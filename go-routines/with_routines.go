@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func main(){
+func main() {
 	start := time.Now()
 	userName := fetchUser()
 
@@ -19,10 +19,10 @@ func main(){
 	go fetchUserLikes(userName, respch, wg)
 	go fetchUserMatch(userName, respch, wg)
 
-	wg.Wait()   // without this, it wont wait and closes ch immediately
+	wg.Wait()     // without this, it wont wait and closes ch immediately
 	close(respch) // without this will raise deadlock
 
-	for resp := range respch{
+	for resp := range respch {
 		fmt.Println(resp)
 	}
 
@@ -45,8 +45,8 @@ func fetchUserLikes(userName string, respch chan any, wg *sync.WaitGroup) {
 	wg.Done()
 }
 
-func fetchUserMatch(userName string, respch chan any, wg *sync.WaitGroup){
-	time.Sleep(time.Millisecond*100)
+func fetchUserMatch(userName string, respch chan any, wg *sync.WaitGroup) {
+	time.Sleep(time.Millisecond * 100)
 
 	respch <- "Ana"
 	wg.Done()

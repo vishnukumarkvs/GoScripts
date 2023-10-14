@@ -1,2 +1,3 @@
 *.sum
 .env
+config.go

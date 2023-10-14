@@ -16,7 +16,7 @@ func main() {
 		Region: aws.String(region),
 	})
 
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error creating session:", err)
 		return
 	}
@@ -28,7 +28,7 @@ func main() {
 	}
 
 	result, err := svc.Scan(scanInput)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error scanning table: ", err)
 		return
 	}
@@ -38,13 +38,13 @@ func main() {
 	for _, item := range result.Items {
 		deleteInput := &dynamodb.DeleteItemInput{
 			TableName: aws.String(tableName),
-			Key : item,
+			Key:       item,
 		}
 		_, err = svc.DeleteItem(deleteInput)
-		if err!= nil{
-			fmt.Println("Error deleteing item: ",err)
-		}else{
-			fmt.Println("Deleted Item: ",item)
+		if err != nil {
+			fmt.Println("Error deleteing item: ", err)
+		} else {
+			fmt.Println("Deleted Item: ", item)
 		}
 	}
 

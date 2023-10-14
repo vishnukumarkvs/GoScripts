@@ -5,13 +5,13 @@ import (
 	"time"
 )
 
-func main(){
+func main() {
 	start := time.Now()
 	userName := fetchUser()
 	likes := fetchUserLikes(userName)
 	match := fetchUserMatch(userName)
 
-	fmt.Printf("User Info:-\nName: %+v, Likes: %+v, Match: %+v\n",userName,likes, match)
+	fmt.Printf("User Info:-\nName: %+v, Likes: %+v, Match: %+v\n", userName, likes, match)
 
 	fmt.Println(time.Since(start))
 
@@ -23,14 +23,14 @@ func fetchUser() string {
 	return "Vishnu"
 }
 
-func fetchUserLikes(userName string) int{
+func fetchUserLikes(userName string) int {
 	time.Sleep(time.Millisecond * 150)
 
 	return 10
 }
 
-func fetchUserMatch(userName string) string{
-	time.Sleep(time.Millisecond*100)
+func fetchUserMatch(userName string) string {
+	time.Sleep(time.Millisecond * 100)
 
 	return "Ana"
 }

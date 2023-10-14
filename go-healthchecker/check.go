@@ -1,20 +1,20 @@
 package main
 
-import(
+import (
 	"fmt"
-	"time"
 	"net"
+	"time"
 )
 
-func Check(destination string, port string) string{
+func Check(destination string, port string) string {
 	address := destination + ":" + port
-	timeout := time.Duration(5* time.Second)
+	timeout := time.Duration(5 * time.Second)
 	conn, err := net.DialTimeout("tcp", address, timeout)
 	var status string
 
-	if err != nil{
+	if err != nil {
 		status = fmt.Sprintf("[DOWN] %v is unreachable, \n Error: %v", destination, err)
-	}else{
+	} else {
 		status = fmt.Sprintf("[UP] %v is reachable, \n From: %v\n To: %v\n", destination, conn.LocalAddr(), conn.RemoteAddr())
 	}
 

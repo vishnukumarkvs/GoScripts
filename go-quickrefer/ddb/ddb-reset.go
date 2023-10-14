@@ -14,29 +14,59 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func deleteTableItems(svc *dynamodb.DynamoDB, tableName string, wg *sync.WaitGroup){
+// config.go: contains KeySchema and the tableKeyMapping map
+// only works for N and S types for partition and sort keys
+// for example:
+// tableKeyMapping["Table1"] = KeySchema{PartitionKey: "pk", PartitionType: "N", SortKey: "sk", SortKeyType: "N"}
+
+func deleteTableItems(svc *dynamodb.DynamoDB, tableName string, wg *sync.WaitGroup) {
 	defer wg.Done()
+
+	keySchema, found := tableKeyMapping[tableName]
+	if !found {
+		fmt.Println("Table not found: ", tableName)
+		return
+	}
 
 	scanInput := &dynamodb.ScanInput{
 		TableName: aws.String(tableName),
 	}
 
 	result, err := svc.Scan(scanInput)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error scanning table: ", err)
 		return
 	}
-
-	fmt.Printf("Scan complete for %v\n",tableName)
-
 	for _, item := range result.Items {
+		partitionValue := item[keySchema.PartitionKey]
+		sortValue := item[keySchema.SortKey]
+
+		var partitionAttributeValue *dynamodb.AttributeValue
+		var sortAttributeValue *dynamodb.AttributeValue
+
+		if keySchema.PartitionType == "S" {
+			partitionAttributeValue = &dynamodb.AttributeValue{S: partitionValue.S}
+		} else if keySchema.PartitionType == "N" {
+			partitionAttributeValue = &dynamodb.AttributeValue{N: partitionValue.N}
+		}
+
+		if keySchema.SortKeyType == "S" {
+			sortAttributeValue = &dynamodb.AttributeValue{S: sortValue.S}
+		} else if keySchema.SortKeyType == "N" {
+			sortAttributeValue = &dynamodb.AttributeValue{N: sortValue.N}
+		}
+
 		deleteInput := &dynamodb.DeleteItemInput{
 			TableName: aws.String(tableName),
-			Key : item,
+			Key: map[string]*dynamodb.AttributeValue{
+				keySchema.PartitionKey: partitionAttributeValue,
+				keySchema.SortKey:      sortAttributeValue,
+			},
 		}
+
 		_, err = svc.DeleteItem(deleteInput)
-		if err!= nil{
-			fmt.Println("Error deleteing item: ",err)
+		if err != nil {
+			fmt.Println("Error deleting item: ", tableName, err, item)
 		}
 	}
 
@@ -50,18 +80,17 @@ func init() {
 	}
 }
 
-
 func main() {
-	start:= time.Now()
+	start := time.Now()
 	region := "us-east-2"
 	tableNamesStr := os.Getenv("TableNames")
-	tableNames := strings.Split(tableNamesStr,",")
+	tableNames := strings.Split(tableNamesStr, ",")
 
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String(region),
 	})
 
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error creating session:", err)
 		return
 	}
@@ -70,12 +99,12 @@ func main() {
 
 	wg := sync.WaitGroup{}
 
-	for _,tableName := range tableNames{
+	for _, tableName := range tableNames {
 		wg.Add(1)
-		go deleteTableItems(svc,tableName,&wg)
+		go deleteTableItems(svc, tableName, &wg)
 	}
 
-    wg.Wait()
+	wg.Wait()
 
 	fmt.Println(time.Since(start))
 }
