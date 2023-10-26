@@ -16,7 +16,7 @@
     <div class="flex flex-row mt-4 space-x-4">
       <div class="flex-1">
         <h1 class="text-xl mb-4">Films</h1>
-        <ul class="list-disc list-inside text-lg ml-5">
+        <ul class="list-disc list-inside text-lg ml-5" id="film-list">
           {{ range .Films }}
           <li class="bg-blue-500 text-white p-2 mb-2 rounded-md">
             {{ .Title }} - {{ .Director }}
@@ -27,7 +27,7 @@
 
       <div class="flex-1 border-2 rounded-md p-4">
         <h1 class="mb-4 text-xl font-semibold">Add Film</h1>
-        <form hx-post="/add-film">
+        <form hx-post="/add-film" hx-target="#film-list" hx-swap="beforeend">
           <div class="mb-2">
             <label for="film-title">Title</label>
             <input
