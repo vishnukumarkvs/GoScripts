@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+	"time"
 )
 
 type Film struct{
@@ -28,6 +29,7 @@ func main() {
 		tmpl.Execute(w,films)
 	}
 	h2 := func (w http.ResponseWriter, r *http.Request){
+		time.Sleep(2*time.Second)
 		// log.Println("HTMX request received")
 		// log.Println(r.Header.Get("HX-Request"))
 		title := r.PostFormValue("title")
