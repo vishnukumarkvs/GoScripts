@@ -4,6 +4,7 @@ use (
 	./go-ddb
 	./go-ec2
 	./go-healthchecker
+	./go-htmx
 	./go-job
 	./go-quickrefer
 )
