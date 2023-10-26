@@ -17,11 +17,11 @@
       <div class="flex-1">
         <h1 class="text-xl mb-4">Films</h1>
         <ul class="list-disc list-inside text-lg ml-5" id="film-list">
-          {{ range .Films }}
+          {{ range .Films }} {{ block "film-list-element" .}}
           <li class="bg-blue-500 text-white p-2 mb-2 rounded-md">
             {{ .Title }} - {{ .Director }}
           </li>
-          {{ end }}
+          {{ end }} {{ end }}
         </ul>
       </div>
 
