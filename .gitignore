@@ -1,3 +1,4 @@
 *.sum
 .env
 config.go
+node_modules

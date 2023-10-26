@@ -3,11 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Go HTMX</title>
   </head>
-  <body>
-    Start go htmx {{ range .Films}}
-    <p>{{ .Title }} - {{ .Director }}</p>
-    {{ end }}
+  <body class="w-[90%] mx-auto">
+    <h1 class="text-3xl font-bold underline mt-10">Filmy Info</h1>
+    <div class="flex flex-row mt-4 space-x-4">
+      <div class="flex-1">
+        <h1 class="text-xl mb-4">Films</h1>
+        <ul class="list-disc list-inside text-lg ml-5">
+          {{ range .Films }}
+          <li class="bg-blue-500 text-white p-2 mb-2 rounded-md">
+            {{ .Title }} - {{ .Director }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="flex-1 border-2 rounded-md p-4">
+        <h1 class="mb-4 text-xl font-semibold">Add Film</h1>
+        <form>
+          <div class="mb-2">
+            <label for="film-title">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="film-title"
+              class="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="film-director">Director</label>
+            <input
+              type="text"
+              name="director"
+              id="film-director"
+              class="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6"
+            />
+          </div>
+          <button
+            type="submit"
+            class="text-white p-2 rounded-md bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+          >
+            ADD
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

@@ -15,7 +15,7 @@ func main() {
 
 	//handler
     h1 := func(w http.ResponseWriter, r *http.Request){
-		tmpl := template.Must(template.ParseFiles("index.html"))
+		tmpl := template.Must(template.ParseFiles("./index.html"))
 
 		films := map[string][]Film{
 			"Films": {
