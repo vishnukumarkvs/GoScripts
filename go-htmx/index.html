@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.6"
+      integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+      crossorigin="anonymous"
+    ></script>
     <title>Go HTMX</title>
   </head>
   <body class="w-[90%] mx-auto">
@@ -22,7 +27,7 @@
 
       <div class="flex-1 border-2 rounded-md p-4">
         <h1 class="mb-4 text-xl font-semibold">Add Film</h1>
-        <form>
+        <form hx-post="/add-film">
           <div class="mb-2">
             <label for="film-title">Title</label>
             <input

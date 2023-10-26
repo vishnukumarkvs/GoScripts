@@ -26,6 +26,11 @@ func main() {
 		}
 		tmpl.Execute(w,films)
 	}
+	h2 := func (w http.ResponseWriter, r *http.Request){
+		log.Println("HTMX request received")
+		log.Println(r.Header.Get("HX-Request"))
+	} 
 	http.HandleFunc("/", h1)
+	http.HandleFunc("/add-film",h2)
 	log.Fatal(http.ListenAndServe(":8000",nil))
 }
