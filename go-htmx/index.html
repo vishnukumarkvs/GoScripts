@@ -6,6 +6,8 @@
     <title>Go HTMX</title>
   </head>
   <body>
-    Start go htmx
+    Start go htmx {{ range .Films}}
+    <p>{{ .Title }} - {{ .Director }}</p>
+    {{ end }}
   </body>
 </html>
