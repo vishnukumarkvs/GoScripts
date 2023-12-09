@@ -1,0 +1,70 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "go-fiber-postgres",
+    "dateExported": "2023-12-09T14:55:32.647Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b6cadd0c-c59a-4710-80f7-ee712fff43b6",
+            "colId": "f276e96a-479d-4042-9094-7f100c639f10",
+            "containerId": "",
+            "name": "CREATE",
+            "url": "http://localhost:8080/api/create-books",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-09T14:42:30.492Z",
+            "modified": "2023-12-09T14:52:39.225Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"author\": \"sankar\",\n  \"title\": \"ujiu\",\n  \"publisher\":\"netu\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "88b69f19-4d0f-48ca-b340-ed9a5a67ce15",
+            "colId": "f276e96a-479d-4042-9094-7f100c639f10",
+            "containerId": "",
+            "name": "GET ALL",
+            "url": "http://localhost:8080/api/books",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-12-09T14:46:21.165Z",
+            "modified": "2023-12-09T14:47:09.080Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9b438d4d-07a2-4a9f-a370-bbf904c809e2",
+            "colId": "f276e96a-479d-4042-9094-7f100c639f10",
+            "containerId": "",
+            "name": "GET ONE",
+            "url": "http://localhost:8080/api/get-books/2",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-09T14:51:32.516Z",
+            "modified": "2023-12-09T14:52:46.918Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "503c514d-b243-46d2-8410-296728301b61",
+            "colId": "f276e96a-479d-4042-9094-7f100c639f10",
+            "containerId": "",
+            "name": "DELETE",
+            "url": "http://localhost:8080/api/delete-book/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-12-09T14:53:10.615Z",
+            "modified": "2023-12-09T14:53:56.622Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

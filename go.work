@@ -7,5 +7,6 @@ use (
 	./go-healthchecker
 	./go-htmx
 	./go-job
+	./go-postgres-fiber
 	./go-quickrefer
 )
