@@ -1,6 +1,7 @@
 go 1.21.3
 
 use (
+	./go-actor-model
 	./go-ddb
 	./go-distributed-cas
 	./go-ec2
