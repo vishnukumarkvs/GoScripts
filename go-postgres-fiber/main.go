@@ -1,5 +1,3 @@
-// https://youtu.be/1XPktts9USg?si=S3lz-2o5jm-u4x2w
-
 package main
 
 import (

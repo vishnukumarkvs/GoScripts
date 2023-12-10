@@ -4,6 +4,7 @@ use (
 	./go-ddb
 	./go-distributed-cas
 	./go-ec2
+	./go-game-server
 	./go-healthchecker
 	./go-htmx
 	./go-job
