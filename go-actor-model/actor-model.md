@@ -1,3 +1,4 @@
+```
 package main
 
 import (
@@ -48,3 +49,4 @@ func main() {
 	e.Send(pid, ResetState{}) // msg has type any
 	// we are sending msg to pid
 }
+```
