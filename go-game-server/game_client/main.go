@@ -47,7 +47,7 @@ func main() {
 		log.Fatal("Not able to dial to server endpoint")
 	}
 
-	c := newGameClient(conn, "vishnu")
+	c := newGameClient(conn, "vkvs")
 
 	if err := c.login(); err != nil {
 		log.Fatal("Error: ", err)
