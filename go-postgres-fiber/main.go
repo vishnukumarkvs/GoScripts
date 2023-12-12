@@ -116,37 +116,50 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 	api.Get("/books", r.GetBooks)
 }
 
-func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal(err)
-	}
 
-  config := &storage.Config{
-    Host: os.Getenv("DB_HOST"),
-    Port: os.Getenv("DB_PORT"),
-    Password: os.Getenv("DB_PASS"),
-    User: os.Getenv("DB_USER"),
-    SSLMode: os.Getenv("DB_SSLMode"),
-    DBName: os.Getenv("DB_NAME"),
-  }
+func setupApp() *fiber.App {
+    // Initialize Fiber app
+    app := fiber.New()
 
-  db, err := storage.NewConnection(config)
+    // Database setup
+    config := &storage.Config{
+        Host: os.Getenv("DB_HOST"),
+        Port: os.Getenv("DB_PORT"),
+        Password: os.Getenv("DB_PASS"),
+        User: os.Getenv("DB_USER"),
+        SSLMode: os.Getenv("DB_SSLMode"),
+        DBName: os.Getenv("DB_NAME"),
+    }
+    db, err := storage.NewConnection(config)
+    if err != nil {
+        log.Fatal("Failed to connect to database:", err)
+    }
 
-  if err!=nil{
-    panic("couldnt connect to database")
-  }
+    // Migrate models
+    err = models.MigrateBooks(db)
+    if err != nil {
+        log.Fatal("Failed to migrate database models:", err)
+    }
 
-  err = models.MigrateBooks(db)
-  if err!=nil{
-    panic("Not able to create database")
-  }
+    // Setup routes
+    r := Repository{DB: db}
+    r.SetupRoutes(app)
 
-	r := Repository{
-		DB: db,
-	}
-
-	app := fiber.New()
-	r.SetupRoutes(app) // struct method
-	app.Listen(":8080")
+    return app
 }
+
+func main() {
+    err := godotenv.Load(".env")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    app := setupApp()
+    app.Listen(":8080")
+}
+
+
+// Improvements
+// 1. Add database connection pooling, finetuneparameters based on server cpu,memory
+// Wrapping app.listen() in goroutine doesnt make any faster. 
+// app.listen() blocks the process in listens for requests. If you need to run any additional tasks after that, you can use goroutine to run it in background
