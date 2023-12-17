@@ -25,9 +25,10 @@ func newGameServer() actor.Receiver{
 func (s *GameServer) Receive(c *actor.Context){
 	switch msg:= c.Message().(type){
 	case actor.Started:
+		s.startHTTP()
 		fmt.Println("actor started")
-	default:
 		_ = msg
+	
 	}
 }
 
@@ -50,4 +51,5 @@ func (s *GameServer) handleWS(w http.ResponseWriter, r *http.Request){
 func main(){
 	e, _ := actor.NewEngine()
 	e.Spawn(newGameServer, "server")
+	select {}
 }
