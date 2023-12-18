@@ -5,6 +5,7 @@ use (
 	./go-ddb
 	./go-distributed-cas
 	./go-ec2
+	./go-echo-htmx-templ
 	./go-game-server
 	./go-healthchecker
 	./go-htmx
