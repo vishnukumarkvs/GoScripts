@@ -2,3 +2,5 @@
 .env
 config.go
 node_modules
+**/*.exe
+
