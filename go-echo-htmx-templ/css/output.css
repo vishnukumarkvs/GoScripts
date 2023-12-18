@@ -769,6 +769,10 @@ select {
   font-family: Caveat Brush;
 }
 
+.font-rs {
+  font-family: Rubik Scribble;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;

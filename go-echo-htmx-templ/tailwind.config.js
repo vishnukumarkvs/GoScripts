@@ -5,6 +5,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       cb: ["Caveat Brush"],
+      rs: ["Rubik Scribble"],
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],

@@ -52,7 +52,7 @@ func Button(variant string, label string) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<button type=\"button\" class=\"px-5 py-2.5 font-medium font-cb bg-gray-50 hover:bg-gray-100 hover:text-gray-600 text-gray-500 rounded-lg text-sm\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<button type=\"button\" class=\"px-5 py-2.5 font-medium font-rs bg-gray-50 hover:bg-gray-100 hover:text-gray-600 text-gray-500 rounded-lg text-sm\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
