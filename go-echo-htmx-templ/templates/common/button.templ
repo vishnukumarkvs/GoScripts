@@ -1,0 +1,17 @@
+package common
+
+templ Button(variant string, label string) {
+	if variant=="green" {
+		<button type="button" class="px-5 py-2.5 font-medium font-cb bg-green-50 hover:bg-green-100 hover:text-green-600 text-green-500 rounded-lg text-sm">
+			{ label }
+		</button>
+	} else if variant=="blue" {
+		<button type="button" class="px-5 py-2.5 font-medium font-cb bg-blue-50 hover:bg-blue-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm">
+			{ label }
+		</button>
+	} else {
+		<button type="button" class="px-5 py-2.5 font-medium font-cb bg-gray-50 hover:bg-gray-100 hover:text-gray-600 text-gray-500 rounded-lg text-sm">
+			{ label }
+		</button>
+	}
+}
