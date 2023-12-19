@@ -1,7 +1,5 @@
 package templates
 
-import "go-echo-htmx-templ/templates/common"
-
 templ Index() {
 	<html lang="en">
 		<head>
@@ -13,10 +11,18 @@ templ Index() {
 			<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Rubik+Scribble&display=swap" rel="stylesheet"/>
 		</head>
 		<body>
-			<div class="w-full h-screen flex flex-col justify-centeer items-center font-mono">
-				@Hello("Vishy")
-				@common.Button("blue", "Add")
+			<div class="w-full h-screen flex flex-col justify-start items-start font-mono">
+				<div class="ml-24 mt-16">
+					<div class="flex gap-4 justify-center items-center">
+						<p class="text-4xl font-bold font-mono">Simple <span class="italic text-[#FAF089] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">TODO</span> List </p>
+						<i data-lucide="clipboard-check" class="w-10 h-10"></i>
+					</div>
+				</div>
 			</div>
+			<script src="https://unpkg.com/lucide@latest"></script>
+			<script>
+				lucide.createIcons();
+			</script>
 		</body>
 	</html>
 }
