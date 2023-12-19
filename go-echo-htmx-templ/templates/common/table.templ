@@ -1,0 +1,30 @@
+package common
+
+import "strconv"
+
+type TableItem struct {
+	Id       int
+	TaskName string
+	Status   string
+}
+
+templ Table(item []TableItem) {
+	<table>
+		<thead>
+			<tr>
+				<th class="border px-4 py-2">ID</th>
+				<th class="border px-4 py-2">Task Name</th>
+				<th class="border px-4 py-2">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			for _ , it := range item {
+				<tr>
+					<td class="border px-4 py-2">{ strconv.Itoa(it.Id) }</td>
+					<td class="border px-4 py-2">{ it.TaskName }</td>
+					<td class="border px-4 py-2">{ it.Status }</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

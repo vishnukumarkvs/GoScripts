@@ -10,6 +10,8 @@ import "context"
 import "io"
 import "bytes"
 
+import "go-echo-htmx-templ/templates/common"
+
 func Index() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -32,7 +34,7 @@ func Index() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link href=\"/css/output.css\" rel=\"stylesheet\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Caveat+Brush&amp;family=Rubik+Scribble&amp;display=swap\" rel=\"stylesheet\"></head><body><div class=\"w-full h-screen flex flex-col justify-start items-start font-mono\"><div class=\"ml-24 mt-16\"><div class=\"flex gap-4 justify-center items-center\"><p class=\"text-4xl font-bold font-mono\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link href=\"/css/output.css\" rel=\"stylesheet\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Caveat+Brush&amp;family=Rubik+Scribble&amp;display=swap\" rel=\"stylesheet\"></head><body><div class=\"w-full h-screen flex flex-col justify-start items-start font-mono\"><div class=\"ml-24 mt-16 flex flex-col gap-4\"><div class=\"flex gap-4 justify-center items-center\"><p class=\"text-4xl font-bold font-mono\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -59,7 +61,19 @@ func Index() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><i data-lucide=\"clipboard-check\" class=\"w-10 h-10\"></i></div></div></div><script src=\"https://unpkg.com/lucide@latest\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><i data-lucide=\"clipboard-check\" class=\"w-10 h-10\"></i></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = common.Table([]common.TableItem{{1, "go learn", "in progress"}, {2, "leetcode daily", "new"}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = common.Input().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><script src=\"https://unpkg.com/lucide@latest\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

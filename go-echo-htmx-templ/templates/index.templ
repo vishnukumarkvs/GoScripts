@@ -1,5 +1,7 @@
 package templates
 
+import "go-echo-htmx-templ/templates/common"
+
 templ Index() {
 	<html lang="en">
 		<head>
@@ -12,11 +14,13 @@ templ Index() {
 		</head>
 		<body>
 			<div class="w-full h-screen flex flex-col justify-start items-start font-mono">
-				<div class="ml-24 mt-16">
+				<div class="ml-24 mt-16 flex flex-col gap-4">
 					<div class="flex gap-4 justify-center items-center">
 						<p class="text-4xl font-bold font-mono">Simple <span class="italic text-[#FAF089] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">TODO</span> List </p>
 						<i data-lucide="clipboard-check" class="w-10 h-10"></i>
 					</div>
+					@common.Table([]common.TableItem{{1,"go learn","in progress"},{2,"leetcode daily","new"}})
+					@common.Input()
 				</div>
 			</div>
 			<script src="https://unpkg.com/lucide@latest"></script>
