@@ -1,6 +1,7 @@
 package templates
 
 import "go-echo-htmx-templ/templates/common"
+import "go-echo-htmx-templ/templates/components"
 
 templ Index() {
 	<html lang="en">
@@ -20,9 +21,10 @@ templ Index() {
 						<i data-lucide="clipboard-check" class="w-10 h-10"></i>
 					</div>
 					@common.Table([]common.TableItem{{1,"go learn","in progress"},{2,"leetcode daily","new"}})
-					@common.Input()
+					@components.AddTodoInput()
 				</div>
 			</div>
+			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
 			<script src="https://unpkg.com/lucide@latest"></script>
 			<script>
 				lucide.createIcons();
