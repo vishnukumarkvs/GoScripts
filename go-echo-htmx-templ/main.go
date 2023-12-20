@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"go-echo-htmx-templ/dto"
 	"go-echo-htmx-templ/templates"
+	"go-echo-htmx-templ/templates/common"
 	"os"
 
 	"github.com/labstack/echo/v4"
@@ -20,8 +20,11 @@ func main() {
     })
     e.POST("/add-todo", func(c echo.Context) error {
         todoText:= c.FormValue("todoText")
-        fmt.Println(todoText)
-        return nil
+        item := dto.TableItem{len(items)+1,todoText,"new"}
+        items = append(items, item)
+
+        component := common.Table(items)
+        return component.Render(context.Background(), c.Response().Writer)
     })
     e.Static("/css", "css")
     e.Logger.Fatal(e.Start(":3000"))
