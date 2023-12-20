@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"go-echo-htmx-templ/dto"
 	"go-echo-htmx-templ/templates"
 	"os"
 
@@ -10,8 +11,9 @@ import (
 )
 
 func main() {
+    items:= []dto.TableItem{{1,"go learn","done"},{2,"leetcode daily","new"}}
     e := echo.New()
-    component := templates.Index()
+    component := templates.Index(items)
     component.Render(context.Background(), os.Stdout)
     e.GET("/", func(c echo.Context) error {
         return component.Render(context.Background(), c.Response().Writer)

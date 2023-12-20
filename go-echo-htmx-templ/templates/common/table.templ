@@ -1,14 +1,9 @@
 package common
 
 import "strconv"
+import "go-echo-htmx-templ/dto"
 
-type TableItem struct {
-	Id       int
-	TaskName string
-	Status   string
-}
-
-templ Table(item []TableItem) {
+templ Table(item []dto.TableItem) {
 	<table>
 		<thead>
 			<tr>
