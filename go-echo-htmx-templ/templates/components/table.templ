@@ -1,4 +1,4 @@
-package common
+package components
 
 import "strconv"
 import "go-echo-htmx-templ/dto"
@@ -10,6 +10,7 @@ templ Table(item []dto.TableItem) {
 				<th class="border px-4 py-2">ID</th>
 				<th class="border px-4 py-2">Task Name</th>
 				<th class="border px-4 py-2">Status</th>
+				<th class="border px-4 py-2">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,6 +19,14 @@ templ Table(item []dto.TableItem) {
 					<td class="border px-4 py-2">{ strconv.Itoa(it.Id) }</td>
 					<td class="border px-4 py-2">{ it.TaskName }</td>
 					<td class="border px-4 py-2">{ it.Status }</td>
+					<td class="border px-4 py-2">
+						<button
+ 							hx-post={ "/delete-todo/" + strconv.Itoa(it.Id) }
+ 							hx-target="#todo-table"
+ 							hx-swap="outerHTML"
+ 							type="button"
+						>X</button>
+					</td>
 				</tr>
 			}
 		</tbody>

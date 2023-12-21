@@ -10,7 +10,6 @@ import "context"
 import "io"
 import "bytes"
 
-import "go-echo-htmx-templ/templates/common"
 import "go-echo-htmx-templ/templates/components"
 import "go-echo-htmx-templ/dto"
 
@@ -67,7 +66,7 @@ func Index(items []dto.TableItem) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = common.Table(items).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Table(items).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

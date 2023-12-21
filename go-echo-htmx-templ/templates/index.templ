@@ -1,6 +1,5 @@
 package templates
 
-import "go-echo-htmx-templ/templates/common"
 import "go-echo-htmx-templ/templates/components"
 import "go-echo-htmx-templ/dto"
 
@@ -21,7 +20,7 @@ templ Index(items []dto.TableItem) {
 						<p class="text-4xl font-bold font-mono">Simple <span class="italic text-[#FAF089] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">TODO</span> List </p>
 						<i data-lucide="clipboard-check" class="w-10 h-10"></i>
 					</div>
-					@common.Table(items)
+					@components.Table(items)
 					@components.AddTodoInput()
 				</div>
 			</div>
