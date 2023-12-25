@@ -45,8 +45,8 @@ func (s *PlayerSession) Receive(c *actor.Context) {
 func (s *PlayerSession) readLoop(){
 	var msg types.WSMessage
 	for{
-		if err:= s.conn.WriteJSON(&msg); err !=nil{
-			fmt.Println("read error")
+		if err:= s.conn.ReadJSON(&msg); err !=nil{
+			fmt.Println("read error", err)
 			return
 		}
 		go s.handleMessage(msg)
@@ -60,6 +60,7 @@ func (s *PlayerSession) handleMessage(msg types.WSMessage){
 		if err := json.Unmarshal(msg.Data, &loginMsg); err!=nil{
 			panic(err)
 		}
+		fmt.Println(loginMsg)
 	}
 }
 
