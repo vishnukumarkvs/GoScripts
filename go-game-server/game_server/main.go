@@ -60,6 +60,9 @@ func (s *PlayerSession) handleMessage(msg types.WSMessage){
 		if err := json.Unmarshal(msg.Data, &loginMsg); err!=nil{
 			panic(err)
 		}
+		s.clientID = loginMsg.ClientId
+		s.username = loginMsg.Username
+		s.inLobby = true
 		fmt.Println(loginMsg)
 	}
 }
