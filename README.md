@@ -1,6 +1,6 @@
-- go mod init <>
+# GoScripts
 
-- https://stackoverflow.com/questions/65748509/vscode-shows-an-error-when-having-multiple-go-projects-in-a-directory
-  In parent directory
-- go work init
-- go work use <folder name>
+Golang mini projects ranging from Fullstack to Automation Scripts etc.
+
+- My personal repo to understand, store Go scripts and projects.
+- Repo contains Go general project implementations and AWS Go Scripts for automation
